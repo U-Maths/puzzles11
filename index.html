@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Math Puzzles with 11</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #f0f8ff;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #4CAF50;
+      color: white;
+      padding: 1rem;
+      font-size: 1.5rem;
+    }
+    main {
+      padding: 2rem;
+    }
+    .card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      padding: 1.5rem;
+      max-width: 500px;
+      margin: 2rem auto;
+    }
+    button {
+      background: #4CAF50;
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+    button:hover {
+      background: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <header>Math Puzzles with 11</header>
+  <main>
+    <div class="card">
+      <h2>Welcome!</h2>
+      <p>Discover the magic of the number 11 through fun puzzles and tricks.</p>
+      <button onclick="startPuzzle()">Start Puzzle</button>
+    </div>
+    <div class="card" id="puzzle-area" style="display:none;">
+      <h2 id="puzzle-question">Puzzle will appear here...</h2>
+      <input type="text" id="answer" placeholder="Your answer">
+      <br><br>
+      <button onclick="checkAnswer()">Submit</button>
+      <p id="feedback"></p>
+    </div>
+  </main>
+
+  <script>
+    const puzzles = [
+      { question: "What is 11 x 11?", answer: "121" },
+      { question: "Add the digits of 29, then multiply by 11.", answer: "220" },
+      { question: "What comes after 11, 22, 33, ...?", answer: "44" }
+    ];
+
+    let currentPuzzle = 0;
+
+    function startPuzzle() {
+      document.querySelector(".card").style.display = "none";
+      document.getElementById("puzzle-area").style.display = "block";
+      showPuzzle();
+    }
+
+    function showPuzzle() {
+      document.getElementById("puzzle-question").innerText = puzzles[currentPuzzle].question;
+      document.getElementById("answer").value = "";
+      document.getElementById("feedback").innerText = "";
+    }
+
+    function checkAnswer() {
+      const userAnswer = document.getElementById("answer").value.trim();
+      const correctAnswer = puzzles[currentPuzzle].answer;
+      if (userAnswer === correctAnswer) {
+        document.getElementById("feedback").innerText = "🎉 Correct!";
+        currentPuzzle++;
+        if (currentPuzzle < puzzles.length) {
+          setTimeout(showPuzzle, 1500);
+        } else {
+          document.getElementById("feedback").innerText += " You finished all puzzles!";
+        }
+      } else {
+        document.getElementById("feedback").innerText = "❌ Try again!";
+      }
+    }
+  </script>
+</body>
+</html>
