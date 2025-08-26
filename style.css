@@ -46,6 +46,9 @@ body{
 }
 .nav-link:hover{ background: rgba(94,255,115,0.15); border-color: rgba(94,255,115,0.4); }
 
+/* Make the header title use Neon Green */
+.brand { color: var(--neon); }
+
 /* Hero */
 .hero{ text-align:center; padding:clamp(1rem,3.5vw,2rem) 0 0.4rem; }
 .muted{ color: #cfe2d6; }
