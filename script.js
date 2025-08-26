@@ -1,10 +1,42 @@
 // Year
 document.getElementById("year").textContent = new Date().getFullYear();
 
-// Normalise numeric entry
+// Helpers
 const normalizeNum = (s) => (s || "").toString().replace(/[,\s]/g, "");
 
-// ----- Correct answers & sets (from updated solutions) -----
+// Strobogrammatic check (works on the string form)
+function isStrobogrammatic(str) {
+  if (!str) return false;
+  const map = { "0":"0", "1":"1", "8":"8", "6":"9", "9":"6" };
+  let l = 0, r = str.length - 1;
+  while (l <= r) {
+    const a = str[l], b = str[r];
+    if (!(a in map) || map[a] !== b) return false;
+    l++; r--;
+  }
+  return true;
+}
+
+// Primality check (for positive integers in Number range)
+function isPrime(str) {
+  // reject non-digits
+  if (!/^\d+$/.test(str)) return false;
+  const n = Number(str);
+  if (!Number.isSafeInteger(n)) return false;
+  if (n < 2) return false;
+  if (n % 2 === 0) return n === 2;
+  if (n % 3 === 0) return n === 3;
+  // 6k ± 1 wheel
+  let i = 5, step = 2;
+  while (i * i <= n) {
+    if (n % i === 0) return false;
+    i += step;
+    step = 6 - step;
+  }
+  return true;
+}
+
+// ----- Correct answers & sets -----
 const P1 = { main: ["101"] }; // next smallest strobogrammatic prime
 const P2_VALID = new Set(["1331","2662","3993","4114","5445","6776","8228","9559"]);
 const P2_EXT = "8";
@@ -15,11 +47,28 @@ const P3_EXT = "375";
 const p1Answer = document.getElementById("p1-answer");
 const p1Check  = document.getElementById("p1-check");
 const p1Feedback = document.getElementById("p1-feedback");
+
 p1Check.addEventListener("click", () => {
-  const val = normalizeNum(p1Answer.value);
+  const raw = p1Answer.value;
+  const val = normalizeNum(raw);
   if (!val) { p1Feedback.textContent = "Please enter an answer."; return; }
-  p1Feedback.textContent = P1.main.includes(val) ? "🎉 Correct!" : "❌ Not correct — try again.";
+
+  if (P1.main.includes(val)) { p1Feedback.textContent = "🎉 Correct!"; return; }
+
+  const strob = isStrobogrammatic(val);
+  const prime = isPrime(val);
+
+  if (strob && prime) {
+    p1Feedback.textContent = "Close — that’s a strobogrammatic prime, but not the next after 11. Try a smaller one.";
+  } else if (strob && !prime) {
+    p1Feedback.textContent = `Not quite — whilst ${val} is strobogrammatic, it is not prime.`;
+  } else if (!strob && prime) {
+    p1Feedback.textContent = `Not quite — whilst ${val} is prime, it is not strobogrammatic.`;
+  } else {
+    p1Feedback.textContent = `Not quite — ${val} is neither strobogrammatic nor prime.`;
+  }
 });
+
 p1Answer.addEventListener("keydown", e => { if (e.key === "Enter") p1Check.click(); });
 
 // P1 extension — open problem
