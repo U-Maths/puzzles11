@@ -3,51 +3,105 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Math Puzzles with 11</title>
+  <title>Math Puzzles with 11 — Answers</title>
 
-  <!-- Optional: friendly geometric font similar to the site’s vibe -->
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header class="site-header">
     <div class="wrap">
-      <h1 class="brand">Math Puzzles with 11</h1>
+      <h1 class="brand">Math Puzzles with 11 — Answers</h1>
       <nav class="nav">
-        <a href="#" class="nav-link is-active">Home</a>
-        <a href="#" class="nav-link">About</a>
+        <a href="#p1" class="nav-link">×11 Trick</a>
+        <a href="#p2" class="nav-link">Even Palindromes</a>
+        <a href="#p3" class="nav-link">Hendecagon</a>
       </nav>
     </div>
   </header>
 
   <main class="wrap">
     <section class="hero">
-      <h2>Discover the magic of 11</h2>
-      <p>Quick, friendly puzzles that reveal patterns and tricks with the number 11.</p>
-      <button class="btn btn-primary" id="startBtn">Start Puzzle</button>
+      <h2>Solutions to our three puzzles</h2>
+      <p class="muted">Click a section to expand. Use the links above to jump straight to one.</p>
     </section>
 
-    <section class="card" id="puzzle-area" hidden>
-      <div class="progress">
-        <div class="progress-bar" id="progressBar" style="width:0%"></div>
-      </div>
+    <!-- Puzzle 1 -->
+    <details class="card puzzle" id="p1" open>
+      <summary>
+        <span class="title">Puzzle 1 — Multiplying by 11 (the quick pattern)</span>
+        <button class="link-btn copylink" data-target="p1" aria-label="Copy direct link to this answer">🔗</button>
+      </summary>
+      <div class="content">
+        <p><strong>Recap:</strong> Use a pattern to multiply numbers by 11 quickly.</p>
+        <h4>Two-digit numbers</h4>
+        <p>
+          Let the number be <em>ab</em> (digits <em>a</em> then <em>b</em>). Then
+          <code>11 × ab</code> becomes <code>a (a+b) b</code>, with a carry if <code>a+b ≥ 10</code>.
+        </p>
+        <ul>
+          <li><code>34 × 11</code> → <code>3 (3+4) 4</code> → <code>374</code>.</li>
+          <li><code>59 × 11</code> → <code>5 (5+9) 9</code> → carry: <code>5+1 | 4 | 9</code> → <code>649</code>.</li>
+        </ul>
+        <p><em>Why it works:</em> <code>11×(10a+b)=110a+11b=100a + (a+b)·10 + b</code>.</p>
 
-      <h3 id="puzzle-question">Puzzle will appear here…</h3>
-
-      <label class="sr-only" for="answer">Your answer</label>
-      <input class="input" id="answer" type="text" placeholder="Type your answer" autocomplete="off" />
-      <div class="actions">
-        <button class="btn" id="hintBtn">Hint</button>
-        <button class="btn btn-primary" id="submitBtn">Submit</button>
+        <h4>Three-digit numbers</h4>
+        <p>
+          For digits <em>a b c</em>, write: <code>a | (a+b) | (b+c) | c</code>, managing carries.
+        </p>
+        <ul>
+          <li><code>314 × 11</code> → <code>3 | 3+1=4 | 1+4=5 | 4</code> → <code>3454</code>.</li>
+          <li><code>907 × 11</code> → <code>9 | 9+0=9 | 0+7=7 | 7</code> → <code>9977</code>.</li>
+        </ul>
       </div>
-      <p class="feedback" id="feedback" aria-live="polite"></p>
+    </details>
 
-      <div class="footer-actions">
-        <button class="btn btn-ghost" id="prevBtn" disabled>◀ Prev</button>
-        <span id="counter" class="muted">Puzzle 1 of 1</span>
-        <button class="btn btn-ghost" id="nextBtn" disabled>Next ▶</button>
+    <!-- Puzzle 2 -->
+    <details class="card puzzle" id="p2">
+      <summary>
+        <span class="title">Puzzle 2 — Why every even-digit palindrome is divisible by 11</span>
+        <button class="link-btn copylink" data-target="p2" aria-label="Copy direct link to this answer">🔗</button>
+      </summary>
+      <div class="content">
+        <p><strong>Recap:</strong> Prove that any palindrome with an even number of digits is a multiple of 11.</p>
+        <h4>Proof (using the 11 divisibility test)</h4>
+        <p>
+          The rule: a number is divisible by 11 iff the alternating sum of its digits is a multiple of 11.
+        </p>
+        <p>
+          For a 2m-digit palindrome <code>a₁ a₂ … aₘ aₘ … a₂ a₁</code>, the alternating sum is
+          <code>(a₁ − a₂ + a₃ − … + aₘ) − (aₘ − … + a₃ − a₂ + a₁)</code>, which cancels to <code>0</code>.
+          Hence it’s divisible by 11.
+        </p>
+        <p><strong>Examples:</strong> <code>1221 = 11 × 111</code>, <code>7447 = 11 × 677</code>, <code>1331 = 11 × 121</code>.</p>
       </div>
-    </section>
+    </details>
+
+    <!-- Puzzle 3 -->
+    <details class="card puzzle" id="p3">
+      <summary>
+        <span class="title">Puzzle 3 — How many diagonals does a regular hendecagon have?</span>
+        <button class="link-btn copylink" data-target="p3" aria-label="Copy direct link to this answer">🔗</button>
+      </summary>
+      <div class="content">
+        <p><strong>Recap:</strong> A hendecagon has 11 sides. How many diagonals does it contain?</p>
+        <h4>Solution</h4>
+        <p>
+          In an <code>n</code>-gon the number of diagonals is
+          <code>C(n,2) − n = n(n−1)/2 − n = n(n−3)/2</code>.
+          For <code>n = 11</code>, that’s <code>11×8/2 = 44</code> diagonals.
+        </p>
+
+        <details class="note">
+          <summary>Optional extension: regions formed by all diagonals</summary>
+          <p>
+            When no three diagonals meet at an interior point, the number of regions is
+            <code>C(n,4) + C(n,2) + 1</code>. For <code>n=11</code>, that gives
+            <code>330 + 55 + 1 = 386</code>.
+          </p>
+        </details>
+      </div>
+    </details>
   </main>
 
   <footer class="site-footer">
