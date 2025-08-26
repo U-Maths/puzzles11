@@ -1,5 +1,6 @@
 // Year
-document.getElementById("year").textContent = new Date().getFullYear();
+const y = document.getElementById("year");
+if (y) y.textContent = new Date().getFullYear();
 
 // Helpers
 const normalizeNum = (s) => (s || "").toString().replace(/[,\s]/g, "");
