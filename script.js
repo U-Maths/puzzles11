@@ -1,19 +1,17 @@
-// Utility: year
+// Year
 document.getElementById("year").textContent = new Date().getFullYear();
 
-// Normalize numeric entry: strip spaces/commas
-function normalizeNum(s){
-  return (s || "").toString().replace(/[,\s]/g, "");
-}
+// Normalise numeric entry
+const normalizeNum = (s) => (s || "").toString().replace(/[,\s]/g, "");
 
-// ----- Correct answers -----
+// ----- Correct answers & sets (from updated solutions) -----
 const P1 = { main: ["101"] }; // next smallest strobogrammatic prime
-const P2_VALID = new Set(["1331","2662","3993","4114","5445","6776","8228","9559"]); // any one is OK
+const P2_VALID = new Set(["1331","2662","3993","4114","5445","6776","8228","9559"]);
 const P2_EXT = "8";
 const P3 = "44";
 const P3_EXT = "375";
 
-// ----- Wire up: Puzzle 1 -----
+// ===== Puzzle 1 =====
 const p1Answer = document.getElementById("p1-answer");
 const p1Check  = document.getElementById("p1-check");
 const p1Feedback = document.getElementById("p1-feedback");
@@ -24,7 +22,7 @@ p1Check.addEventListener("click", () => {
 });
 p1Answer.addEventListener("keydown", e => { if (e.key === "Enter") p1Check.click(); });
 
-// Extension: open problem Yes/No → neutral feedback
+// P1 extension — open problem
 const p1ExtCheck = document.getElementById("p1-ext-check");
 const p1ExtFeedback = document.getElementById("p1-ext-feedback");
 p1ExtCheck.addEventListener("click", () => {
@@ -34,7 +32,7 @@ p1ExtCheck.addEventListener("click", () => {
     "This is an open problem — it's currently unknown whether there are infinitely many strobogrammatic primes. Your choice may or may not turn out to be correct!";
 });
 
-// ----- Wire up: Puzzle 2 -----
+// ===== Puzzle 2 =====
 const p2Answer = document.getElementById("p2-answer");
 const p2Check  = document.getElementById("p2-check");
 const p2Feedback = document.getElementById("p2-feedback");
@@ -47,7 +45,7 @@ p2Check.addEventListener("click", () => {
 });
 p2Answer.addEventListener("keydown", e => { if (e.key === "Enter") p2Check.click(); });
 
-// Puzzle 2 extension (count)
+// Puzzle 2 extension — count
 const p2ExtAnswer = document.getElementById("p2-ext-answer");
 const p2ExtCheck  = document.getElementById("p2-ext-check");
 const p2ExtFeedback = document.getElementById("p2-ext-feedback");
@@ -58,7 +56,7 @@ p2ExtCheck.addEventListener("click", () => {
 });
 p2ExtAnswer.addEventListener("keydown", e => { if (e.key === "Enter") p2ExtCheck.click(); });
 
-// ----- Wire up: Puzzle 3 -----
+// ===== Puzzle 3 =====
 const p3Answer = document.getElementById("p3-answer");
 const p3Check  = document.getElementById("p3-check");
 const p3Feedback = document.getElementById("p3-feedback");
@@ -69,7 +67,7 @@ p3Check.addEventListener("click", () => {
 });
 p3Answer.addEventListener("keydown", e => { if (e.key === "Enter") p3Check.click(); });
 
-// Puzzle 3 extension
+// Puzzle 3 extension — regions
 const p3ExtAnswer = document.getElementById("p3-ext-answer");
 const p3ExtCheck  = document.getElementById("p3-ext-check");
 const p3ExtFeedback = document.getElementById("p3-ext-feedback");
