@@ -137,3 +137,22 @@ body{
 .img-card img{ max-width: 100%; height: auto; display: block; margin: 0 auto; }
 .img-card figcaption{ font-size: 0.9rem; color: var(--muted); margin-top: 0.4rem; }
 
+/* footer stuff */
+.footer-brand{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 56px; /* keeps footer tidy even if logo is small */
+}
+
+.brandmark{
+  height: 34px;        /* tweak 28–44px to taste */
+  width: auto;
+  display: block;
+}
+
+.brandmark-link:hover .brandmark{
+  opacity: 0.9;        /* subtle hover */
+}
+
+
