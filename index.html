@@ -3,105 +3,140 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Math Puzzles with 11 — Answers</title>
-
+  <title>Mathematical Puzzles Featuring the Number 11 — Answers & Checker</title>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header class="site-header">
     <div class="wrap">
-      <h1 class="brand">Math Puzzles with 11 — Answers</h1>
+      <h1 class="brand">Mathematical Puzzles Featuring the Number 11</h1>
       <nav class="nav">
-        <a href="#p1" class="nav-link">×11 Trick</a>
-        <a href="#p2" class="nav-link">Even Palindromes</a>
-        <a href="#p3" class="nav-link">Hendecagon</a>
+        <a class="nav-link" href="#p1">Puzzle 1</a>
+        <a class="nav-link" href="#p2">Puzzle 2</a>
+        <a class="nav-link" href="#p3">Puzzle 3</a>
       </nav>
     </div>
   </header>
 
   <main class="wrap">
     <section class="hero">
-      <h2>Solutions to our three puzzles</h2>
-      <p class="muted">Click a section to expand. Use the links above to jump straight to one.</p>
+      <h2>Answers & interactive checker</h2>
+      <p class="muted">Enter your answers below to see if they’re correct, then expand each solution for full reasoning.</p>
     </section>
 
     <!-- Puzzle 1 -->
-    <details class="card puzzle" id="p1" open>
-      <summary>
-        <span class="title">Puzzle 1 — Multiplying by 11 (the quick pattern)</span>
-        <button class="link-btn copylink" data-target="p1" aria-label="Copy direct link to this answer">🔗</button>
-      </summary>
-      <div class="content">
-        <p><strong>Recap:</strong> Use a pattern to multiply numbers by 11 quickly.</p>
-        <h4>Two-digit numbers</h4>
-        <p>
-          Let the number be <em>ab</em> (digits <em>a</em> then <em>b</em>). Then
-          <code>11 × ab</code> becomes <code>a (a+b) b</code>, with a carry if <code>a+b ≥ 10</code>.
-        </p>
-        <ul>
-          <li><code>34 × 11</code> → <code>3 (3+4) 4</code> → <code>374</code>.</li>
-          <li><code>59 × 11</code> → <code>5 (5+9) 9</code> → carry: <code>5+1 | 4 | 9</code> → <code>649</code>.</li>
-        </ul>
-        <p><em>Why it works:</em> <code>11×(10a+b)=110a+11b=100a + (a+b)·10 + b</code>.</p>
+    <section class="card" id="p1">
+      <h3>Puzzle 1</h3>
+      <p><strong>Fun fact:</strong> 11 is the smallest strobogrammatic prime.<br/>
+      A prime number is only divisible by 1 and itself.<br/>
+      A strobogrammatic number is one that looks the same when rotated 180° (turned upside down).<br/>
+      For example, 69 and 8118 are strobogrammatic.</p>
 
-        <h4>Three-digit numbers</h4>
-        <p>
-          For digits <em>a b c</em>, write: <code>a | (a+b) | (b+c) | c</code>, managing carries.
-        </p>
-        <ul>
-          <li><code>314 × 11</code> → <code>3 | 3+1=4 | 1+4=5 | 4</code> → <code>3454</code>.</li>
-          <li><code>907 × 11</code> → <code>9 | 9+0=9 | 0+7=7 | 7</code> → <code>9977</code>.</li>
-        </ul>
+      <p><strong>The puzzle:</strong> What is the next smallest strobogrammatic prime after 11?</p>
+      <div class="checker">
+        <label class="sr-only" for="p1-answer">Answer</label>
+        <input id="p1-answer" class="input" type="text" placeholder="Type your answer (e.g., 101)" autocomplete="off" />
+        <button id="p1-check" class="btn btn-primary">Check</button>
+        <span id="p1-feedback" class="feedback" aria-live="polite"></span>
       </div>
-    </details>
+
+      <p><strong>Extension:</strong> Are there infinitely many strobogrammatic primes?</p>
+      <div class="checker">
+        <div class="radio-row" role="radiogroup" aria-label="Are there infinitely many strobogrammatic primes?">
+          <label><input type="radio" name="p1-ext" value="Yes"> Yes</label>
+          <label><input type="radio" name="p1-ext" value="No"> No</label>
+        </div>
+        <button id="p1-ext-check" class="btn">Submit</button>
+        <span id="p1-ext-feedback" class="feedback" aria-live="polite"></span>
+      </div>
+
+      <details class="solution">
+        <summary>Show full solution</summary>
+        <div class="solution-body">
+          <p><strong>Solution:</strong> 101.<br/>
+          <strong>Extension solution:</strong> It is currently unknown whether there are infinitely many strobogrammatic primes (an open problem).</p>
+          <p><strong>Reasoning:</strong> Strobogrammatic digits are 0,1,6,8,9 (with 6↔9). The next candidate after 11 is 101, which is prime.</p>
+        </div>
+      </details>
+    </section>
 
     <!-- Puzzle 2 -->
-    <details class="card puzzle" id="p2">
-      <summary>
-        <span class="title">Puzzle 2 — Why every even-digit palindrome is divisible by 11</span>
-        <button class="link-btn copylink" data-target="p2" aria-label="Copy direct link to this answer">🔗</button>
-      </summary>
-      <div class="content">
-        <p><strong>Recap:</strong> Prove that any palindrome with an even number of digits is a multiple of 11.</p>
-        <h4>Proof (using the 11 divisibility test)</h4>
-        <p>
-          The rule: a number is divisible by 11 iff the alternating sum of its digits is a multiple of 11.
-        </p>
-        <p>
-          For a 2m-digit palindrome <code>a₁ a₂ … aₘ aₘ … a₂ a₁</code>, the alternating sum is
-          <code>(a₁ − a₂ + a₃ − … + aₘ) − (aₘ − … + a₃ − a₂ + a₁)</code>, which cancels to <code>0</code>.
-          Hence it’s divisible by 11.
-        </p>
-        <p><strong>Examples:</strong> <code>1221 = 11 × 111</code>, <code>7447 = 11 × 677</code>, <code>1331 = 11 × 121</code>.</p>
+    <section class="card" id="p2">
+      <h3>Puzzle 2</h3>
+      <p><strong>Fun fact:</strong> A palindrome is a number that reads the same forwards and backwards.<br/>
+      Any palindrome with an even number of digits is always divisible by 11.<br/>
+      For example:</p>
+      <ul>
+        <li>1221 ÷ 11 = 111</li>
+        <li>3773 ÷ 11 = 343</li>
+        <li>985589 ÷ 11 = 8969</li>
+      </ul>
+
+      <p><strong>The puzzle:</strong> Find a 4-digit palindrome that is divisible by 11&sup2;.</p>
+      <div class="checker">
+        <label class="sr-only" for="p2-answer">Answer</label>
+        <input id="p2-answer" class="input" type="text" placeholder="Type a 4-digit palindrome" autocomplete="off" />
+        <button id="p2-check" class="btn btn-primary">Check</button>
+        <span id="p2-feedback" class="feedback" aria-live="polite"></span>
       </div>
-    </details>
+
+      <p><strong>Extension:</strong> How many 4-digit palindromes are divisible by 11&sup2;?</p>
+      <div class="checker">
+        <label class="sr-only" for="p2-ext-answer">Answer</label>
+        <input id="p2-ext-answer" class="input" type="text" placeholder="Type a number" autocomplete="off" />
+        <button id="p2-ext-check" class="btn">Check</button>
+        <span id="p2-ext-feedback" class="feedback" aria-live="polite"></span>
+      </div>
+
+      <details class="solution">
+        <summary>Show full solution</summary>
+        <div class="solution-body">
+          <p><strong>Solution:</strong> any number from this set: {1331, 2662, 3993, 4114, 5445, 6776, 8228, 9559}</p>
+          <p><strong>Extension solution:</strong> 8</p>
+          <p><strong>Reasoning:</strong> Any 4-digit palindrome has the form abba, whose value is 1000a+100b+10b+a = 1001a+110b = 11(91a+10b).<br/>
+          Divisibility by 121 requires 91a+10b to be a multiple of 11. Working modulo 11, this is 3a − b ≡ 0, so b ≡ 3a (mod 11).<br/>
+          With 1 ≤ a ≤ 9 and 0 ≤ b ≤ 9, the valid (a,b) pairs are: (1,3), (2,6), (3,9), (4,1), (5,4), (6,7), (8,2), (9,5).<br/>
+          Thus the 8 palindromes divisible by 121 are:<br/>
+          1331, 2662, 3993, 4114, 5445, 6776, 8228, 9559.</p>
+        </div>
+      </details>
+    </section>
 
     <!-- Puzzle 3 -->
-    <details class="card puzzle" id="p3">
-      <summary>
-        <span class="title">Puzzle 3 — How many diagonals does a regular hendecagon have?</span>
-        <button class="link-btn copylink" data-target="p3" aria-label="Copy direct link to this answer">🔗</button>
-      </summary>
-      <div class="content">
-        <p><strong>Recap:</strong> A hendecagon has 11 sides. How many diagonals does it contain?</p>
-        <h4>Solution</h4>
-        <p>
-          In an <code>n</code>-gon the number of diagonals is
-          <code>C(n,2) − n = n(n−1)/2 − n = n(n−3)/2</code>.
-          For <code>n = 11</code>, that’s <code>11×8/2 = 44</code> diagonals.
-        </p>
+    <section class="card" id="p3">
+      <h3>Puzzle 3</h3>
+      <p><strong>Fun fact:</strong> According to the Gauss–Wantzel Theorem, a regular hendecagon (an 11-sided polygon) cannot be constructed using only a compass and straightedge.</p>
 
-        <details class="note">
-          <summary>Optional extension: regions formed by all diagonals</summary>
-          <p>
-            When no three diagonals meet at an interior point, the number of regions is
-            <code>C(n,4) + C(n,2) + 1</code>. For <code>n=11</code>, that gives
-            <code>330 + 55 + 1 = 386</code>.
-          </p>
-        </details>
+      <p><strong>The puzzle:</strong> How many diagonals does a hendecagon have?</p>
+      <div class="checker">
+        <label class="sr-only" for="p3-answer">Answer</label>
+        <input id="p3-answer" class="input" type="text" placeholder="Type a number" autocomplete="off" />
+        <button id="p3-check" class="btn btn-primary">Check</button>
+        <span id="p3-feedback" class="feedback" aria-live="polite"></span>
       </div>
-    </details>
+
+      <p><strong>Extension:</strong> If all diagonals are drawn inside a regular hendecagon, how many distinct regions are created?</p>
+      <div class="checker">
+        <label class="sr-only" for="p3-ext-answer">Answer</label>
+        <input id="p3-ext-answer" class="input" type="text" placeholder="Type a number" autocomplete="off" />
+        <button id="p3-ext-check" class="btn">Check</button>
+        <span id="p3-ext-feedback" class="feedback" aria-live="polite"></span>
+      </div>
+
+      <details class="solution">
+        <summary>Show full solution</summary>
+        <div class="solution-body">
+          <p><strong>Solution:</strong> 44</p>
+          <p><strong>Extension solution:</strong> 375</p>
+          <p><strong>Reasoning:</strong></p>
+          <p>Diagonals: In an n-gon, diagonals = n(n−3)/2. For n=11: 11×8/2 = 44.</p>
+          <p>Regions with all diagonals: With no three diagonals concurrent in the interior (true for a regular polygon), the number of regions formed inside the 11-gon is:<br/>
+          C(11,4) + C(11,2) + 1 − 11 = 330 + 55 + 1 − 11 = 375.</p>
+          <p>(Here C(n,k) counts intersection points of diagonals: C(11,4) interior crossings and C(11,2) edges/diagonals, and we subtract 11 to exclude the exterior regions adjacent to the sides.)</p>
+        </div>
+      </details>
+    </section>
   </main>
 
   <footer class="site-footer">
