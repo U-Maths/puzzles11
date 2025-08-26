@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Mathematical Puzzles Featuring the Number 11 — Answers & Checker</title>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -22,17 +21,17 @@
   <main class="wrap">
     <section class="hero">
       <h2>Answers & interactive checker</h2>
-      <p class="muted">Enter your answers below to see if they’re correct, then expand each solution for full reasoning.</p>
+      <p class="muted">Enter your answers below to see if they’re correct, then expand each solution for full reasoning and fun facts.</p>
     </section>
 
-    <!-- Puzzle 1 -->
+    <!-- ===================== Puzzle 1 ===================== -->
     <section class="card" id="p1">
       <h3>Puzzle 1</h3>
-      <p><strong>Fun fact:</strong> 11 is the smallest strobogrammatic prime.<br/>
-      A prime number is only divisible by 1 and itself.<br/>
-      A strobogrammatic number is one that looks the same when rotated 180° (turned upside down).<br/>
+      <!-- Fun fact & puzzle text (mirrored from your sheet) -->
+      <p><strong>Fun fact:</strong> 11 is the smallest strobogrammatic prime.<br>
+      A prime number is only divisible by 1 and itself.<br>
+      A strobogrammatic number is one that looks the same when rotated 180° (turned upside down).<br>
       For example, 69 and 8118 are strobogrammatic.</p>
-
       <p><strong>The puzzle:</strong> What is the next smallest strobogrammatic prime after 11?</p>
       <div class="checker">
         <label class="sr-only" for="p1-answer">Answer</label>
@@ -54,23 +53,36 @@
       <details class="solution">
         <summary>Show full solution</summary>
         <div class="solution-body">
-          <p><strong>Solution:</strong> 101.<br/>
-          <strong>Extension solution:</strong> It is currently unknown whether there are infinitely many strobogrammatic primes (an open problem).</p>
+          <p><strong>Solution:</strong> 101.</p>
+          <p><strong>Extension solution:</strong> It is currently unknown whether there are infinitely many strobogrammatic primes (an open problem).</p>
           <p><strong>Reasoning:</strong> Strobogrammatic digits are 0,1,6,8,9 (with 6↔9). The next candidate after 11 is 101, which is prime.</p>
+        </div>
+      </details>
+
+      <details class="fact-drop">
+        <summary>More fun facts about this puzzle</summary>
+        <div class="solution-body">
+          <p>Whilst you may have been alive in the last year that was strobogrammatic (in 1969), you are unlikely to see another such year – the next strobogrammatic year will be 6009.</p>
+          <p>There are lots of open problems about the infinitude of certain types of primes. Here are two that are famous:</p>
+          <ul>
+            <li>Are there infinitely many Mersenne primes (primes of the form 2<sup>p</sup> – 1, where p is prime)?</li>
+            <li>Are there infinitely many primes of the form 4n+1?</li>
+          </ul>
         </div>
       </details>
     </section>
 
-    <!-- Puzzle 2 -->
+    <!-- ===================== Puzzle 2 ===================== -->
     <section class="card" id="p2">
       <h3>Puzzle 2</h3>
-      <p><strong>Fun fact:</strong> A palindrome is a number that reads the same forwards and backwards.<br/>
-      Any palindrome with an even number of digits is always divisible by 11.<br/>
+      <p><strong>Fun fact:</strong> A palindrome is a number that reads the same forwards and backwards.<br>
+      Any palindrome with an even number of digits is always divisible by 11.<br>
       For example:</p>
       <ul>
         <li>1221 ÷ 11 = 111</li>
         <li>3773 ÷ 11 = 343</li>
-        <li>985589 ÷ 11 = 8969</li>
+        <!-- Silent correction applied here -->
+        <li>985589 ÷ 11 = 89599</li>
       </ul>
 
       <p><strong>The puzzle:</strong> Find a 4-digit palindrome that is divisible by 11&sup2;.</p>
@@ -94,16 +106,24 @@
         <div class="solution-body">
           <p><strong>Solution:</strong> any number from this set: {1331, 2662, 3993, 4114, 5445, 6776, 8228, 9559}</p>
           <p><strong>Extension solution:</strong> 8</p>
-          <p><strong>Reasoning:</strong> Any 4-digit palindrome has the form abba, whose value is 1000a+100b+10b+a = 1001a+110b = 11(91a+10b).<br/>
-          Divisibility by 121 requires 91a+10b to be a multiple of 11. Working modulo 11, this is 3a − b ≡ 0, so b ≡ 3a (mod 11).<br/>
-          With 1 ≤ a ≤ 9 and 0 ≤ b ≤ 9, the valid (a,b) pairs are: (1,3), (2,6), (3,9), (4,1), (5,4), (6,7), (8,2), (9,5).<br/>
-          Thus the 8 palindromes divisible by 121 are:<br/>
-          1331, 2662, 3993, 4114, 5445, 6776, 8228, 9559.</p>
+          <p><strong>Reasoning:</strong> Any 4-digit palindrome has the form abba, whose value is 1000a+100b+10b+a = 1001a+110b = 11(91a+10b). Divisibility by 121 requires 91a+10b to be a multiple of 11. 91a+10b = 88a+3a+11b−b = 11(8a+b)+(3a−b). Thus we need 3a−b to be divisible by 11. With 1 ≤ a ≤ 9 and 0 ≤ b ≤ 9, the valid (a,b) pairs are: (1,3), (2,6), (3,9), (4,1), (5,4), (6,7), (8,2), (9,5). Thus the 8 palindromes divisible by 121 are: 1331, 2662, 3993, 4114, 5445, 6776, 8228, 9559.</p>
+        </div>
+      </details>
+
+      <details class="fact-drop">
+        <summary>More fun facts about this puzzle</summary>
+        <div class="solution-body">
+          <p>If you reverse a non-palindromic number and add it to the original, the result is often a palindrome after a few iterations. This is called the Lychrel process. For example,</p>
+          <ul>
+            <li>56 + 65 = 121, which is a palindrome</li>
+            <li>274 + 472 = 746; 746 + 647 = 1393; 1393 + 3931 = 5324; 5324 + 4325 = 9559, which is a palindrome.</li>
+          </ul>
+          <p>A Lychrel number is a number that never becomes palindromic through the Lychrel process. Whether or not any Lychrel numbers exist is an open problem in mathematics.</p>
         </div>
       </details>
     </section>
 
-    <!-- Puzzle 3 -->
+    <!-- ===================== Puzzle 3 ===================== -->
     <section class="card" id="p3">
       <h3>Puzzle 3</h3>
       <p><strong>Fun fact:</strong> According to the Gauss–Wantzel Theorem, a regular hendecagon (an 11-sided polygon) cannot be constructed using only a compass and straightedge.</p>
@@ -130,10 +150,24 @@
           <p><strong>Solution:</strong> 44</p>
           <p><strong>Extension solution:</strong> 375</p>
           <p><strong>Reasoning:</strong></p>
-          <p>Diagonals: In an n-gon, diagonals = n(n−3)/2. For n=11: 11×8/2 = 44.</p>
-          <p>Regions with all diagonals: With no three diagonals concurrent in the interior (true for a regular polygon), the number of regions formed inside the 11-gon is:<br/>
-          C(11,4) + C(11,2) + 1 − 11 = 330 + 55 + 1 − 11 = 375.</p>
-          <p>(Here C(n,k) counts intersection points of diagonals: C(11,4) interior crossings and C(11,2) edges/diagonals, and we subtract 11 to exclude the exterior regions adjacent to the sides.)</p>
+          <p>Diagonals: There are 8 diagonals extending from each vertex of the hendecagon. The number of diagonals in total is therefore 11×8/2 = 44, noting that we need to divide by 2 as each diagonal is counted twice.</p>
+          <p>Regions with all diagonals:</p>
+          <p>With no diagonals the hendecagon has just one region. Now consider any collection of diagonals. If you draw a new diagonal across the hendecagon which does not cross any existing diagonals, then the effect is to increase the number of regions by 1. In addition, every time a new diagonal crosses an existing diagonal inside the hendecagon the number of regions is increased by 1 again. Hence,</p>
+          <p><em>number of regions = 1 + number of diagonals + number of interior intersections = 1 + 44 + C(11,4) = 1 + 44 + 330 = 375.</em></p>
+          <p>Here C(11,4), or “11 choose 4”, stands for the number of different ways to choose 4 distinct points from our set of 11 points. Note that the number of interior intersections is equal to the number of quadrilaterals that can be formed from 11 points, since each quadrilateral produces just 1 intersection – where the diagonals of the quadrilateral intersect. Note also that this counting process works here because no three diagonals of a regular hendecagon are concurrent.</p>
+        </div>
+      </details>
+
+      <details class="fact-drop">
+        <summary>More fun facts about this puzzle</summary>
+        <div class="solution-body">
+          <p>The question of which shapes could be constructed by compass and straight edge was a focus of Greek mathematics. It was not, however, until 1837 that a mathematician (Pierre Wantzel) proved that a specific construction was impossible. He used the nascent field of abstract algebra, connecting geometry to properties of polynomials to prove the impossibility of doubling the cube and trisecting an arbitrary angle.</p>
+          <p>The Gauss-Wantzel Theorem states that a regular n-gon can be constructed from compass and straight edge if and only if n is a product of a power of 2 and distinct Fermat primes.</p>
+          <p>A Fermat prime is a prime of the form 2^(2^k) + 1 for some integer k.</p>
+          <p>Pierre de Fermat conjectured that all numbers of this form are prime, but his conjecture was proven false when Leonhard Euler found that 2^(2^5) + 1 is not prime.</p>
+          <p>The only known Fermat primes are 3, 5, 17, 257 and 65537.</p>
+          <p>Whether or not there are infinitely many Fermat primes is an open problem in mathematics.</p>
+          <p>The number of regions formed by drawing the diagonals of a convex n-gon, if no three are concurrent in its interior, is C(n,4)+n(n-3)/2+1. The sequence of numbers for different values of n can be found in the online encyclopedia of integer sequences as A006522.</p>
         </div>
       </details>
     </section>
