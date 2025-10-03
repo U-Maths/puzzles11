@@ -151,18 +151,25 @@
       </div>
 
       <details class="solution">
-        <summary>Show full solution</summary>
-        <div class="solution-body">
-          <p><strong>Solution:</strong> 44</p>
-          <p><strong>Extension solution:</strong> 375</p>
-          <p><strong>Reasoning:</strong></p>
-          <p>Diagonals: There are 8 diagonals extending from each vertex of the hendecagon. The number of diagonals in total is therefore 11×8/2 = 44, noting that we need to divide by 2 as each diagonal is counted twice.</p>
-          <p>Regions with all diagonals:</p>
-          <p>With no diagonals the hendecagon has just one region. Now consider any collection of diagonals. If you draw a new diagonal across the hendecagon which does not cross any existing diagonals, then the effect is to increase the number of regions by 1. In addition, every time a new diagonal crosses an existing diagonal inside the hendecagon the number of regions is increased by 1 again. Hence,</p>
-          <p><em>number of regions = 1 + number of diagonals + number of interior intersections = 1 + 44 + C(11,4) = 1 + 44 + 330 = 375.</em></p>
-          <p>Here C(11,4), or “11 choose 4”, stands for the number of different ways to choose 4 distinct points from our set of 11 points. Note that the number of interior intersections is equal to the number of quadrilaterals that can be formed from 11 points, since each quadrilateral produces just 1 intersection – where the diagonals of the quadrilateral intersect. Note also that this counting process works here because no three diagonals of a regular hendecagon are concurrent.</p>
-        </div>
-      </details>
+  <summary>Show full solution</summary>
+  <div class="solution-body">
+    <p><strong>Solution:</strong> 44</p>
+    <p><strong>Extension solution:</strong> 375</p>
+    <p><strong>Reasoning:</strong></p>
+    <p><strong>Diagonals:</strong> Each vertex of the hendecagon connects by diagonals to 8 non-adjacent vertices. That gives 11×8 in total, but each diagonal is counted twice, so the number of distinct diagonals is 11×8÷2 = <strong>44</strong>.</p>
+    <p><strong>Regions with all diagonals:</strong> Start with no diagonals: the hendecagon is a single region.</p>
+    <ul>
+      <li>If a new diagonal doesn’t cross any others, it splits one region into two, increasing the count by 1.</li>
+      <li>Every time a new diagonal crosses an existing one inside, that crossing adds 1 more region.</li>
+    </ul>
+    <p>So the total number of regions is:</p>
+    <p><em>1 + (number of diagonals) + (number of interior intersections)</em>.</p>
+    <p>We already know there are 44 diagonals.</p>
+    <p>For the intersections: any 4 vertices of the hendecagon form a quadrilateral, whose diagonals cross exactly once inside. So the number of intersections equals the number of ways of choosing 4 vertices: <strong>C(11,4) = 330</strong>.</p>
+    <p>Putting it together: 1 + 44 + 330 = <strong>375</strong>.</p>
+    <p><strong>Answer:</strong> Drawing all diagonals divides the hendecagon into <strong>375 distinct regions</strong>. This works because in a regular hendecagon no three diagonals meet at a single interior point.</p>
+  </div>
+</details>
 
       <details class="fact-drop">
         <summary>More fun facts about this puzzle</summary>
