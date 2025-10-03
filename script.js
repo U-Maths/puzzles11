@@ -40,8 +40,8 @@ function isNonNegativeInteger(str) {
 const P1 = { main: new Set(["101"]) }; // next smallest strobogrammatic prime
 const P2_VALID = new Set(["1331","2662","3993","4114","5445","6776","8228","9559"]);
 const P2_EXT = "8";
-const P3 = "44";
-const P3_EXT = "375";
+const P3 = 44;
+const P3_EXT = 375;
 
 // ===== Puzzle 1 =====
 (function () {
@@ -112,8 +112,7 @@ const P3_EXT = "375";
         return;
       }
 
-      // If it *is* divisible by 121 but not in our set, it means user found an alternative formatting;
-      // but for completeness, respond as correct.
+      // Safety net: if divisible by 121 but not in our set (shouldn't happen), treat as correct.
       p2Feedback.textContent = "🎉 Correct!";
     });
 
@@ -129,12 +128,7 @@ const P3_EXT = "375";
     p2ExtCheck.addEventListener("click", () => {
       const raw = normalizeNum(p2ExtAnswer.value);
 
-      if (!raw) { 
-        p2ExtFeedback.textContent = "Um, that is not a valid answer to a 'how many' question — please try again!";
-        return;
-      }
-
-      if (!isNonNegativeInteger(raw)) {
+      if (!raw || !isNonNegativeInteger(raw)) {
         p2ExtFeedback.textContent = "Um, that is not a valid answer to a 'how many' question — please try again!";
         return;
       }
@@ -161,21 +155,41 @@ const P3_EXT = "375";
   if (p3Check && p3Answer && p3Feedback) {
     p3Check.addEventListener("click", () => {
       const raw = normalizeNum(p3Answer.value);
-      if (!raw) { p3Feedback.textContent = "Please enter a number."; return; }
-      p3Feedback.textContent = (raw === P3) ? "🎉 Correct!" : "❌ Not correct — try again.";
+      if (!raw || !/^-?\d+$/.test(raw)) {
+        p3Feedback.textContent = "Please enter a number.";
+        return;
+      }
+      const val = Number(raw);
+      if (val === P3) {
+        p3Feedback.textContent = "🎉 Correct!";
+      } else if (val < P3) {
+        p3Feedback.textContent = "There are more - try again!";
+      } else {
+        p3Feedback.textContent = "There actually aren't that many - try again!";
+      }
     });
     p3Answer.addEventListener("keydown", (e) => { if (e.key === "Enter") p3Check.click(); });
   }
 
-  // Extension — regions
+  // Extension — regions (target 375) with too small / too large guidance
   const p3ExtAnswer = document.getElementById("p3-ext-answer");
   const p3ExtCheck  = document.getElementById("p3-ext-check");
   const p3ExtFeedback = document.getElementById("p3-ext-feedback");
   if (p3ExtCheck && p3ExtAnswer && p3ExtFeedback) {
     p3ExtCheck.addEventListener("click", () => {
       const raw = normalizeNum(p3ExtAnswer.value);
-      if (!raw) { p3ExtFeedback.textContent = "Please enter a number."; return; }
-      p3ExtFeedback.textContent = (raw === P3_EXT) ? "🎉 Correct!" : "❌ Not correct — try again.";
+      if (!raw || !/^-?\d+$/.test(raw)) {
+        p3ExtFeedback.textContent = "Please enter a number.";
+        return;
+      }
+      const val = Number(raw);
+      if (val === P3_EXT) {
+        p3ExtFeedback.textContent = "🎉 Correct!";
+      } else if (val < P3_EXT) {
+        p3ExtFeedback.textContent = "There are more - try again!";
+      } else {
+        p3ExtFeedback.textContent = "There actually aren't that many - try again!";
+      }
     });
     p3ExtAnswer.addEventListener("keydown", (e) => { if (e.key === "Enter") p3ExtCheck.click(); });
   }
