@@ -30,7 +30,7 @@
       <!-- Fun fact & puzzle text (mirrored from your sheet) -->
       <p><strong>Fun fact:</strong> 11 is the smallest strobogrammatic prime.<br>
       A prime number is only divisible by 1 and itself.<br>
-      A strobogrammatic number is one that looks the same when turned upside down.<br>
+      A strobogrammatic number is one that looks the same on a calculator whether it is viewed the right way up or upside down.<br>
       For example, 69 and 8118 are strobogrammatic.</p>
       <p><strong>The puzzle:</strong> What is the next smallest strobogrammatic prime after 11?</p>
       <div class="checker">
@@ -40,7 +40,7 @@
         <span id="p1-feedback" class="feedback" aria-live="polite"></span>
       </div>
 
-      <p><strong>Extension:</strong> Are there infinitely many strobogrammatic primes?</p>
+      <p><strong>Extension:</strong> Is 68189 a strobogrammatic prime?</p>
       <div class="checker">
         <div class="radio-row" role="radiogroup" aria-label="Are there infinitely many strobogrammatic primes?">
           <label><input type="radio" name="p1-ext" value="Yes"> Yes</label>
@@ -54,8 +54,10 @@
         <summary>Show full solution</summary>
         <div class="solution-body">
           <p><strong>Solution:</strong> 101.</p>
-          <p><strong>Extension solution:</strong> Whether or not there are infinitely many strobogrammatic primes is an open problem in mathematics!</p>
+          <p><strong>Extension solution:</strong> No. 68189 is strobogrammatic but is not prime.</p>
           <p><strong>Reasoning:</strong> Strobogrammatic digits are 0,1,6,8,9 (with 6↔9). The first 10 strobogrammatic numbers are 1, 8, 11, 69, 88, 96, 101, 111, 181 and 609. The first prime number in this list after 11 is 101.</p>
+          <p>For the extension, we start by testing for divisibility by small primes. 68189 is not divisible by 2, 3, 5 or 7, but is divisible by 11.</p> 
+          <p>Dividing by 11, we find that 68189 = 11 x 6199, which turns out to be the full prime factorisation.</p>
         </div>
       </details>
 
@@ -63,6 +65,9 @@
         <summary>More fun facts about this puzzle</summary>
         <div class="solution-body">
           <p>Whilst you may have been alive in the last year that was strobogrammatic (in 1961), you are unlikely to see another such year – the next strobogrammatic year will be 6009.</p>
+          <p>There is a neat test to see if a number <i>n</i> is divisible by 11: add the the digits of <i>n</i> in odd and even positions separately and find the difference between these two sums. If the difference is a multiple of 11 (including 0), then <i>n</i> is divisble by 11.</p>
+          <p>Whether or not there are infinitely many strobogrammatic primes is, incredibly, an open problem in mathematics.</p>
+          <p>Whether or not there are infinitely many strobogrammatic primes is, incredibly, an open problem in mathematics.</p>
           <p>There are lots of open problems about the infinitude of certain types of primes. Here are two that are famous:</p>
           <ul>
             <li>Are there infinitely many Mersenne primes (primes of the form 2<sup>p</sup> – 1, where p is prime)?</li>
@@ -122,7 +127,7 @@
       <h3>Puzzle 3</h3>
       <p><strong>Fun fact:</strong> According to the Gauss–Wantzel Theorem, a regular hendecagon (an 11-sided polygon) cannot be constructed using only a compass and straightedge.</p>
 
-      <p><strong>The puzzle:</strong> How many diagonals does a hendecagon have?</p>
+      <p><strong>The puzzle:</strong> A diagonal of a polygon is a straight line drawn between two non-adjacent vertices. How many diagonals does a hendecagon have?</p>
       
       <figure class="img-card">
   <img src="hendecagon-diagonals.svg"
