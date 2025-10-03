@@ -51,8 +51,13 @@ const P3_EXT = 375;
   if (p1Check && p1Answer && p1Feedback) {
     p1Check.addEventListener("click", () => {
       const raw = normalizeNum(p1Answer.value);
-      if (!raw) { p1Feedback.textContent = "Please enter a number."; return; }
-      p1Feedback.textContent = P1.main.has(raw) ? "🎉 Correct!" : "❌ Not correct — try again.";
+      if (!raw || !/^-?\d+$/.test(raw)) {
+        p1Feedback.textContent = "Please enter a valid number.";
+        return;
+      }
+      p1Feedback.textContent = P1.main.has(raw)
+        ? "🎉 Correct!"
+        : "❌ Not correct — try again.";
     });
     p1Answer.addEventListener("keydown", (e) => { if (e.key === "Enter") p1Check.click(); });
   }
@@ -63,11 +68,13 @@ const P3_EXT = 375;
   if (p1ExtCheck && p1ExtFeedback) {
     p1ExtCheck.addEventListener("click", () => {
       const selected = document.querySelector('input[name="p1-ext"]:checked');
-      if (!selected) { p1ExtFeedback.textContent = "Please select Yes or No."; return; }
+      if (!selected) {
+        p1ExtFeedback.textContent = "Please select Yes or No.";
+        return;
+      }
       if (selected.value === "Yes") {
         p1ExtFeedback.textContent = "Think again — 68189 is strobogrammatic but it is not prime!";
       } else {
-        // “No” is correct: 68189 = 11 × 6199 (6199 is prime)
         p1ExtFeedback.textContent = "That's correct! 68189 is strobogrammatic but not prime.";
       }
     });
