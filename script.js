@@ -18,6 +18,19 @@ function isStrobogrammatic(str) {
   return true;
 }
 
+// Prime checker
+function isPrime(n) {
+  const x = Number(n);
+  if (!Number.isInteger(x) || x < 2) return false;
+  if (x % 2 === 0) return x === 2;
+  if (x % 3 === 0) return x === 3;
+  for (let i = 5; i * i <= x; i += 6) {
+    if (x % i === 0 || x % (i + 2) === 0) return false;
+  }
+  return true;
+}
+
+
 // --- Extra helpers for Puzzle 2 ---
 function isFourDigitNumber(str) {
   // must be exactly 4 digits and not start with 0
@@ -48,17 +61,49 @@ const P3_EXT = 375;
   const p1Answer = document.getElementById("p1-answer");
   const p1Check  = document.getElementById("p1-check");
   const p1Feedback = document.getElementById("p1-feedback");
+
   if (p1Check && p1Answer && p1Feedback) {
     p1Check.addEventListener("click", () => {
       const raw = normalizeNum(p1Answer.value);
-      if (!raw || !/^-?\d+$/.test(raw)) {
+
+      // numeric guard (allow digits only)
+      if (!raw || !/^\d+$/.test(raw)) {
         p1Feedback.textContent = "Please enter a valid number.";
         return;
       }
-      p1Feedback.textContent = P1.main.has(raw)
-        ? "🎉 Correct!"
-        : "❌ Not correct — try again.";
+
+      // Correct answer
+      if (raw === "101") {
+        p1Feedback.textContent = "🎉 Correct!";
+        return;
+      }
+
+      // Helpful nudge for the “base case”
+      if (raw === "11") {
+        p1Feedback.textContent = "11 is a strobogrammatic prime, but the puzzle asks for the next one after 11.";
+        return;
+      }
+
+      // Diagnose properties
+      const strob = isStrobogrammatic(raw);
+      const prime = isPrime(raw);
+
+      if (strob && prime) {
+        // They found a different strobogrammatic prime (e.g., 181)
+        if (Number(raw) > 101) {
+          p1Feedback.textContent = "That is a strobogrammatic prime, but not the next after 11 — try a smaller one!";
+        } else {
+          p1Feedback.textContent = "That is a strobogrammatic prime, but not the next after 11. Try again!";
+        }
+      } else if (strob && !prime) {
+        p1Feedback.textContent = "That is strobogrammatic, but it isn't prime. Try again!";
+      } else if (!strob && prime) {
+        p1Feedback.textContent = "That is prime, but it isn't strobogrammatic. Try again!";
+      } else {
+        p1Feedback.textContent = "That's neither strobogrammatic nor prime. Try again!";
+      }
     });
+
     p1Answer.addEventListener("keydown", (e) => { if (e.key === "Enter") p1Check.click(); });
   }
 
@@ -68,10 +113,7 @@ const P3_EXT = 375;
   if (p1ExtCheck && p1ExtFeedback) {
     p1ExtCheck.addEventListener("click", () => {
       const selected = document.querySelector('input[name="p1-ext"]:checked');
-      if (!selected) {
-        p1ExtFeedback.textContent = "Please select Yes or No.";
-        return;
-      }
+      if (!selected) { p1ExtFeedback.textContent = "Please select Yes or No."; return; }
       if (selected.value === "Yes") {
         p1ExtFeedback.textContent = "Think again — 68189 is strobogrammatic but it is not prime!";
       } else {
