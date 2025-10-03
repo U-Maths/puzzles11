@@ -18,6 +18,24 @@ function isStrobogrammatic(str) {
   return true;
 }
 
+// --- Extra helpers for Puzzle 2 ---
+function isFourDigitNumber(str) {
+  // must be exactly 4 digits and not start with 0
+  return /^[1-9][0-9]{3}$/.test(str);
+}
+function isPalindrome(str) {
+  return str === str.split("").reverse().join("");
+}
+function isDivisibleBy121(str) {
+  const n = Number(str);
+  if (!Number.isFinite(n)) return false;
+  return n % 121 === 0;
+}
+function isNonNegativeInteger(str) {
+  // No signs, no decimals
+  return /^(0|[1-9][0-9]*)$/.test(str);
+}
+
 // -------- Correct answers --------
 const P1 = { main: new Set(["101"]) }; // next smallest strobogrammatic prime
 const P2_VALID = new Set(["1331","2662","3993","4114","5445","6776","8228","9559"]);
@@ -61,25 +79,76 @@ const P3_EXT = "375";
   const p2Answer = document.getElementById("p2-answer");
   const p2Check  = document.getElementById("p2-check");
   const p2Feedback = document.getElementById("p2-feedback");
+
   if (p2Check && p2Answer && p2Feedback) {
     p2Check.addEventListener("click", () => {
       const raw = normalizeNum(p2Answer.value);
-      if (!raw) { p2Feedback.textContent = "Please enter a 4-digit palindrome."; return; }
-      p2Feedback.textContent = P2_VALID.has(raw) ? "🎉 Correct!" : "❌ Not correct — try again.";
+
+      if (!raw) {
+        p2Feedback.textContent = "Please enter a 4-digit palindrome.";
+        return;
+      }
+
+      // If correct, we're done.
+      if (P2_VALID.has(raw)) {
+        p2Feedback.textContent = "🎉 Correct!";
+        return;
+      }
+
+      // Detailed guidance
+      if (!isFourDigitNumber(raw)) {
+        p2Feedback.textContent = "That's not a 4-digit number, try again!";
+        return;
+      }
+
+      if (!isPalindrome(raw)) {
+        p2Feedback.textContent = "That isn't a palindrome, try again!";
+        return;
+      }
+
+      // At this point it's a 4-digit palindrome — check 121 divisibility
+      if (!isDivisibleBy121(raw)) {
+        p2Feedback.textContent = "That is a 4-digit palindrome, but it isn't divisible by 11². Try again!";
+        return;
+      }
+
+      // If it *is* divisible by 121 but not in our set, it means user found an alternative formatting;
+      // but for completeness, respond as correct.
+      p2Feedback.textContent = "🎉 Correct!";
     });
+
     p2Answer.addEventListener("keydown", (e) => { if (e.key === "Enter") p2Check.click(); });
   }
 
-  // Extension
+  // Extension — “How many 4-digit palindromes are divisible by 11²?”
   const p2ExtAnswer = document.getElementById("p2-ext-answer");
   const p2ExtCheck  = document.getElementById("p2-ext-check");
   const p2ExtFeedback = document.getElementById("p2-ext-feedback");
+
   if (p2ExtCheck && p2ExtAnswer && p2ExtFeedback) {
     p2ExtCheck.addEventListener("click", () => {
       const raw = normalizeNum(p2ExtAnswer.value);
-      if (!raw) { p2ExtFeedback.textContent = "Please enter a number."; return; }
-      p2ExtFeedback.textContent = (raw === P2_EXT) ? "🎉 Correct!" : "❌ Not correct — try again.";
+
+      if (!raw) { 
+        p2ExtFeedback.textContent = "Um, that is not a valid answer to a 'how many' question — please try again!";
+        return;
+      }
+
+      if (!isNonNegativeInteger(raw)) {
+        p2ExtFeedback.textContent = "Um, that is not a valid answer to a 'how many' question — please try again!";
+        return;
+      }
+
+      const n = Number(raw);
+      if (n === Number(P2_EXT)) {
+        p2ExtFeedback.textContent = "🎉 Correct!";
+      } else if (n < Number(P2_EXT)) {
+        p2ExtFeedback.textContent = "There are more than that — keep hunting!";
+      } else {
+        p2ExtFeedback.textContent = "You actually have too many... go back and check whether all of your solutions are valid.";
+      }
     });
+
     p2ExtAnswer.addEventListener("keydown", (e) => { if (e.key === "Enter") p2ExtCheck.click(); });
   }
 })();
